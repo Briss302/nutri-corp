@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Header } from "../Header";
-import { Form, InputGroup, Table,} from "react-bootstrap";
+import { Form, InputGroup, Table, Button, Modal } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { ModalClient } from "./ModalClient";
+import { ModalClient } from '../home/ModalClient';
 
 export const ShoppingClient = () => {
-
   const history = useHistory();
-
   const [client, setClient] = useState({
     name: "",
     employee_code: "",
@@ -27,6 +25,8 @@ export const ShoppingClient = () => {
       setGroupClient([...grouClient, client]);
     }
   };
+
+  // MODAL
 
   return (
     <>
@@ -49,7 +49,7 @@ export const ShoppingClient = () => {
               name="group1"
               type={type}
               id={`inline-${type}-1`}
-              onChange={() => history.push("/usuario")}
+              onChange={() => history.push('/usuario')}
             />
             <Form.Check
               inline
@@ -58,7 +58,7 @@ export const ShoppingClient = () => {
               type={type}
               id={`inline-${type}-2`}
               checked
-              onChange={() => history.push("/cliente")}
+              onChange={() => history.push('/cliente')}
             />
           </div>
         ))}
@@ -106,7 +106,7 @@ export const ShoppingClient = () => {
             className="btn btn-primary btn-block"
             onClick={(e) => arrayClient(e)}
           >
-            <b>Agregar cliente</b>
+            Agregar cliente
           </button>
         </section>
       </Form>
@@ -128,7 +128,7 @@ export const ShoppingClient = () => {
                 <td>{user.employee_code}</td>
                 <td>{user.postal_code}</td>
                 <td>
-                  <i className="fas fa-edit"></i>
+                  <i class="fas fa-edit"></i>
                 </td>
                 <td
                   onClick={() =>
@@ -139,7 +139,7 @@ export const ShoppingClient = () => {
                     )
                   }
                 >
-                  <i className="fas fa-trash-alt"></i>
+                  <i class="fas fa-trash-alt"></i>
                 </td>
               </tr>
             ))}

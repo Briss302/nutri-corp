@@ -5,7 +5,7 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 import { readAllItems, deleteItem  } from '../../firebase/firestore'
 
 export const ShoppingCart = ({location}) => {
-
+console.log(ShoppingCart)
   const arr = [];
   arr.push(location);
   const arrProducts = arr[0].state.listProducts
