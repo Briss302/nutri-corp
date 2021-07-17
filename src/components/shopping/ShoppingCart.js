@@ -4,12 +4,7 @@ import { Header } from "../Header";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { readAllItems, deleteItem  } from '../../firebase/firestore'
 
-export const ShoppingCart = ({location}) => {
-console.log(ShoppingCart)
-  const arr = [];
-  arr.push(location);
-  const arrProducts = arr[0].state.listProducts
-  console.log(arrProducts);
+export const ShoppingCart = (/* { location } */) => {
 
   // const arr = [];
   // arr.push(location);
@@ -48,35 +43,41 @@ console.log(ShoppingCart)
       </section>
 
       <section className="bri-containerCards">
-        {
-          arrProducts.map(product => (
-            <Card style={{ width: "18rem" }}>
-              <div className="bri-left">
-                <Card.Img
-                  variant="top"
-                  src="https://i.ibb.co/TKXm2Jm/1849267.png"
-                />
-                <div className="bri-leftBtn">
-                  <button className="btn-bri">-</button>
-                  <p>1</p>
-                  <button className="btn-bri">+</button>
-                </div>
+        {arrProducts.map((product) => (
+          <Card style={{ width: "18rem" }} key={product.id}>
+            <div className="bri-left">
+              <Card.Img
+                variant="top"
+                src={product.img}
+              />
+              <div className="bri-leftBtn">
+                <button className="btn-bri">-</button>
+                <p>{product.qty}</p>
+                <button className="btn-bri">+</button>
               </div>
-              <div className="bricard-body">
-                <div className="bri-right">
-                  <h4 className="fw-bold text-center h-2">{product.title}</h4>
-                  <p className="mb-0">{product.name}</p>
-                  <p>{product.quantity}</p>
-                  <p>Precio: s/ {product.price}</p>
-                  <p>Precio Sugerido: s/ {product.dsctoPrice}</p>
-                </div>
-                <button variant="primary" className="bri-btnDelete">🗑️
-                  {/* <i class="fas fa-trash-alt"></i> */}
-                </button>
+            </div>
+            <div className="bricard-body">
+              <div className="bri-right">
+                <h4 className="fw-bold text-center h-2">{product.title}</h4>
+                <p className="mb-0">{product.name}</p>
+                <p>{product.quantity}</p>
+                <p>Precio: s/ {parseInt(product.price * product.qty)}</p>
+                <p>
+                  Precio Sugerido: s/{" "}
+                  {parseInt(product.dsctoPrice * product.qty)}
+                </p>
               </div>
-            </Card>
-          ))
-        }
+              <i
+                className="far fa-trash-alt fa-2x"
+                onClick={() => deleteItem(product.orderId)
+                  // setArrProducts(
+                  //   arrProducts.filter((el) => el.id !== product.id)
+                  // )
+                }
+              ></i>
+            </div>
+          </Card>
+        ))}
       </section>
       <Container fluid>
         <section className="border-top border-bottom border-dark p-15">

@@ -57,10 +57,9 @@ export const Header = (props) => {
             style={{ maxHeight: "155px" }}
             navbarScroll
           >
-            <h3>Hola! Usuario</h3>
-            <Link to="/productos">🏠 Inicio</Link>
-            <Link exact to="/compras">
-            <button onClick={goShoppingView}>🛒 </button>
+            <h3>Hola! Colaborador</h3>
+            <Link to="/productos">
+              <b className="ms-1"> 🏠 Inicio</b>
             </Link>
             <Link className="bri-btnShoppingHbg"  to='/compras'> 
               <b className="ms-1">🛒 Carrito de compras</b>
